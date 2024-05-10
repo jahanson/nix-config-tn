@@ -1,1 +1,0 @@
-Explain mySystem and myHome

@@ -8,16 +8,16 @@ in
 {
 
   sops.secrets = {
-    truxnell-password = {
+    jahanson-password = {
       sopsFile = ./secrets.sops.yaml;
       neededForUsers = true;
     };
   };
 
-  users.users.truxnell = {
+  users.users.jahanson = {
     isNormalUser = true;
     shell = pkgs.fish;
-    hashedPasswordFile = config.sops.secrets.truxnell-password.path;
+    hashedPasswordFile = config.sops.secrets.jahanson-password.path;
     extraGroups =
       [
         "wheel"
@@ -32,7 +32,11 @@ in
       ];
 
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMZS9J1ydflZ4iJdJgO8+vnN8nNSlEwyn9tbWU9OcysW truxnell@home"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBsUe5YF5z8vGcEYtQX7AAiw2rJygGf2l7xxr8nZZa7w"
+      "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBH3VVFenoJfnu+IFUlD79uxl7L8SFoRup33J2HGny4WEdRgGR41s0MpFKDBmxXZHy4O9Nh8NMMnpy5VhUefnIKI="
+      "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPHFQ3hDjjrKsecn3jmSWYlRXy4IJCrepgU1HaIV5VcmB3mUFmIZ/pCZnPmIG/Gbuqf1PP2FQDmHMX5t0hTYG9A="
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETR70eQJiXaJuB+qpI1z+jFOPbEZoQNRcq4VXkojWfU"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATyScd8ZRhV7uZmrQNSAbRTs9N/Dbx+Y8tGEDny30sA"
     ]; # TODO do i move to ingest github creds?
 
     # packages = [ pkgs.home-manager ];

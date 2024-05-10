@@ -21,10 +21,10 @@ with config;
     nil
     nixpkgs-fmt
     statix
-    nvd
+    # nvd
     gh
 
-    bind # for dns utils like named-checkconf
+    # bind # for dns utils like named-checkconf
     inputs.nix-inspect.packages.${pkgs.system}.default
   ];
 

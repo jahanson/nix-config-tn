@@ -1,6 +1,6 @@
 { config, lib, pkgs, imports, boot, self, inputs, ... }:
 # Role for workstations
-# Covers desktops/laptops, expected to have a GUI and do worloads
+# Covers desktops/laptops, expected to have a GUI and do workloads
 # Will have home-manager installs
 
 with config;
@@ -61,17 +61,14 @@ with config;
   };
 
   environment.systemPackages = with pkgs; [
-
     # Sensors etc
     lm_sensors
     cpufrequtils
     cpupower-gui
-
-
   ];
 
   i18n = {
-    defaultLocale = lib.mkDefault "en_AU.UTF-8";
+    defaultLocale = lib.mkDefault "en_US.UTF-8";
   };
 
   programs.mtr.enable = true;

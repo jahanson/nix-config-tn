@@ -44,6 +44,8 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # nix-inspect - inspect nix derivations usingn a TUI interface
+    # https://github.com/bluskript/nix-inspect
     nix-inspect = {
       url = "github:bluskript/nix-inspect";
     };
@@ -137,148 +139,21 @@
             };
         in
         rec {
-
-          "rickenbacker" = mkNixosConfig {
-            # NixOS laptop (dualboot windows, dunno why i kept it)
-            hostname = "rickenbacker";
+          "durincore" = mkNixosConfig {
+            # NixOS laptop - T470 Thinkpad
+            hostname = "durincore";
             system = "x86_64-linux";
             hardwareModules = [
-              ./nixos/profiles/hw-thinkpad-e14-amd.nix
-              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-e14-amd
+              ./nixos/profiles/hw-lenovo-thinkpad-t470.nix
+              inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
             ];
             profileModules = [
               ./nixos/profiles/role-worstation.nix
               ./nixos/profiles/role-dev.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/workstation.nix; }
-
-
+              { home-manager.users.jahanson = ./nixos/home/jahanson/workstation.nix; }
             ];
           };
-
-          "citadel" = mkNixosConfig {
-            # Gaming PC (dualboot windows)
-
-            hostname = "citadel";
-            system = "x86_64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-gaming-desktop.nix
-            ];
-            profileModules = [
-              ./nixos/profiles/role-worstation.nix
-              ./nixos/profiles/role-dev.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/workstation.nix; }
-
-            ];
-
-          };
-
-          "dns01" = mkNixosConfig {
-            # Rpi for DNS and misc services
-
-            hostname = "dns01";
-            system = "aarch64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-rpi4.nix
-              inputs.nixos-hardware.nixosModules.raspberry-pi-4
-            ];
-            profileModules = [
-              ./nixos/profiles/role-server.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/server.nix; }
-
-            ];
-          };
-
-          "dns02" = mkNixosConfig {
-            # Rpi for DNS and misc services
-
-            hostname = "dns02";
-            system = "aarch64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-rpi4.nix
-              inputs.nixos-hardware.nixosModules.raspberry-pi-4
-            ];
-            profileModules = [
-              ./nixos/profiles/role-server.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/server.nix; }
-            ];
-          };
-
-          "durandal" = mkNixosConfig {
-            # test lenovo tiny
-
-            hostname = "durandal";
-            system = "x86_64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-generic-x86.nix
-            ];
-            profileModules = [
-              ./nixos/profiles/role-server.nix
-              ./nixos/profiles/role-dev.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/server.nix; }
-            ];
-          };
-
-          "daedalus" = mkNixosConfig {
-            # lenovo tiny 720q NAS
-
-            hostname = "daedalus";
-            system = "x86_64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-generic-x86.nix
-            ];
-            profileModules = [
-              ./nixos/profiles/role-server.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/server.nix; }
-            ];
-          };
-
-          "shodan" = mkNixosConfig {
-            # nuc11i7beh (?) homelab
-
-            hostname = "shodan";
-            system = "x86_64-linux";
-            hardwareModules = [
-              ./nixos/profiles/hw-generic-x86.nix
-            ];
-            profileModules = [
-              ./nixos/profiles/role-server.nix
-              { home-manager.users.truxnell = ./nixos/home/truxnell/server.nix; }
-            ];
-          };
-
-
-
-
         };
-
-
-
-
-      # # nix build .#images.rpi4
-      # rpi4 = nixpkgs.lib.nixosSystem {
-      #   inherit specialArgs;
-
-      #   modules = defaultModules ++ [
-      #     "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
-      #     ./nixos/hosts/images/sd-image
-      #   ];
-      # };
-      # # nix build .#images.iso
-      # iso = nixpkgs.lib.nixosSystem {
-      #   inherit specialArgs;
-
-      #   modules = defaultModules ++ [
-      #     "${nixpkgs}/nixos/modules/installer/cd-dvd/channel.nix"
-      #     "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
-      #     ./nixos/hosts/images/cd-dvd
-      #   ];
-      # };
-
-      # simple shortcut to allow for easier referencing of correct
-      # key for building images
-      # > nix build .#images.rpi4
-      # images.rpi4 = nixosConfigurations.rpi4.config.system.build.sdImage;
-      # images.iso = nixosConfigurations.iso.config.system.build.isoImage;
 
       # Convenience output that aggregates the outputs for home, nixos.
       # Also used in ci to build targets generally.
