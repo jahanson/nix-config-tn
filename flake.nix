@@ -144,7 +144,7 @@
             hostname = "durincore";
             system = "x86_64-linux";
             hardwareModules = [
-              ./nixos/profiles/hw-lenovo-thinkpad-t470.nix
+              ./nixos/profiles/hw-thinkpad-t470.nix
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
             ];
             profileModules = [
