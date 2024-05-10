@@ -24,6 +24,7 @@ with config;
     packages = with pkgs;
       [
         #apps
+        _1password-gui
         discord
         yubioath-flutter
         yubikey-manager-qt
@@ -31,6 +32,7 @@ with config;
         vlc
 
         # cli
+        _1password
         bat
         dbus
         direnv
@@ -39,7 +41,6 @@ with config;
         python3
         fzf
         ripgrep
-
         brightnessctl
       ];
 

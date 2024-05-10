@@ -153,6 +153,20 @@
               { home-manager.users.jahanson = ./nixos/home/jahanson/workstation.nix; }
             ];
           };
+          "varda" = mkNixosConfig {
+            # Arm64 cax21 @ Hetzner
+
+            hostname = "varda";
+            system = "aarch64-linux";
+            hardwareModules = [
+              ./nixos/profiles/hw-hetzner-cax.nix
+            ];
+            profileModules = [
+              ./nixos/profiles/role-server.nix
+              { home-manager.users.truxnell = ./nixos/home/jahanson/server.nix; }
+
+            ];
+          };
         };
 
       # Convenience output that aggregates the outputs for home, nixos.
