@@ -148,7 +148,7 @@
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
             ];
             profileModules = [
-              ./nixos/profiles/role-worstation.nix
+              ./nixos/profiles/role-workstation.nix
               ./nixos/profiles/role-dev.nix
               { home-manager.users.jahanson = ./nixos/home/jahanson/workstation.nix; }
             ];
