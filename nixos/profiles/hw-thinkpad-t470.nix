@@ -3,6 +3,16 @@
 with lib;
 {
   boot = {
+    # Use the systemd-boot EFI boot loader.
+    loader = {
+      systemd-boot = {
+        enable = true;
+      };
+      efi = {
+        canTouchEfiVariables = true;
+      };
+    };
+    # Kernel mods
     initrd = {
       availableKernelModules = [ "xhci_pci" "nvme" "usb_storage" "sd_mod" ];
       kernelModules = [ ];

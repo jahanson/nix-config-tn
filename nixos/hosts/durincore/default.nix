@@ -15,7 +15,6 @@
     # TODO build this in from flake host names
     networking.hostName = "durincore";
 
-
     fileSystems."/" =
       { device = "rpool/root";
         fsType = "zfs";
