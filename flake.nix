@@ -163,7 +163,7 @@
             ];
             profileModules = [
               ./nixos/profiles/role-server.nix
-              { home-manager.users.truxnell = ./nixos/home/jahanson/server.nix; }
+              { home-manager.users.jahanson = ./nixos/home/jahanson/server.nix; }
 
             ];
           };
