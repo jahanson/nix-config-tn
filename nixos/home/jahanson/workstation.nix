@@ -34,6 +34,10 @@ with config;
         # cli
         brightnessctl
 
+        # dev utils
+        pre-commit # Pre-commit tasks for git
+        minio-client # S3 management
+        shellcheck
       ];
 
   };

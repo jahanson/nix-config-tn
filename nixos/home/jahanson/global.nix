@@ -44,6 +44,7 @@ with config;
         python3
         fzf
         ripgrep
+        vim
 
         # terminal file managers
         nnn
@@ -75,12 +76,10 @@ with config;
         iotop # io monitoring
         iftop # network monitoring
 
-        # utils
+        # dev utils
         direnv # shell environment management
-        pre-commit # Pre-commit tasks for git
-        minio-client # S3 management
-        shellcheck
         envsubst
+        lazygit
 
         # nix tools
         nvd
