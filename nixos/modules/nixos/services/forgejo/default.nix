@@ -9,7 +9,7 @@ let
   domain = "git.hsn.dev";
 in
 {
-  options.mkSystem.services.forgejo = {
+  options.mySystem.services.forgejo = {
     enable = mkEnableOption "Forgejo";
     openFirewall = mkEnableOption "Open firewall for ${app}" // { default = true; };
   };
