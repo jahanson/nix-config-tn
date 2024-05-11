@@ -13,6 +13,8 @@ keys:
     - &jahanson age18kj3xhlvgjeg2awwku3r8d95w360uysu0w5ejghnp4kh8qmtge5qwa2vjp
   - hosts:
     - &telperion age1z3vjvkead2h934n3w4m5m7tg4tj5qlzagsq6ly84h3tcu7x4ldsqd3s5fg
+    - &varda age1a8z3p24v32l9yxm5z2l8h7rpc3nhacyfv4jvetk2lenrvsdstd3sdu2kaf
+    - &durincore age1d9p83j52m2xg0vh9k7q0uwlxwhs3y6tlv68yg9s2h9mdw2fmmsqshddz5m
 
 
 creation_rules:
@@ -21,3 +23,5 @@ creation_rules:
       - age:
         - *jahanson
         - *telperion
+        - *varda
+        - *durincore
