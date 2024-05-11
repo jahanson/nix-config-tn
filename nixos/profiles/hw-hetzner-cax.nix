@@ -15,16 +15,17 @@
   boot.kernelModules = [ ];
   boot.extraModulePackages = [ ];
 
-  mySystem.services = {
-    openssh.enable = true;
-  };
-
-  # Restic backups disabled.
-  mySystem.system.resticBackup =
+  mySystem = {
+    services.openssh.enable = true;
+    security.wheelNeedsSudoPassword = false;
+    
+    # Restic backups disabled.
+    system.resticBackup =
     {
       local.enable = false;
       remote.enable = false;
     };
+  };
 
   networking.useDHCP = lib.mkDefault true;
   nixpkgs.hostPlatform = lib.mkDefault "aarch64-linux";

@@ -7,11 +7,6 @@
 
     # hardware-configuration.nix - half of the hardware-configuration.nix file
 
-    mySystem = {
-      services.openssh.enable = true;
-      security.wheelNeedsSudoPassword = false;
-    };
-
     # TODO build this in from flake host names
     networking.hostName = "durincore";
 
