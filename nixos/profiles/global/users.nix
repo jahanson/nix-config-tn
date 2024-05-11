@@ -37,6 +37,7 @@ in
       "ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBPHFQ3hDjjrKsecn3jmSWYlRXy4IJCrepgU1HaIV5VcmB3mUFmIZ/pCZnPmIG/Gbuqf1PP2FQDmHMX5t0hTYG9A="
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETR70eQJiXaJuB+qpI1z+jFOPbEZoQNRcq4VXkojWfU"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATyScd8ZRhV7uZmrQNSAbRTs9N/Dbx+Y8tGEDny30sA"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyA/yMPPo+scxBaDFUk7WeEyMAMhXUro5vi4feOKsJT jahanson@durincore"
     ]; # TODO do i move to ingest github creds?
 
     # packages = [ pkgs.home-manager ];
