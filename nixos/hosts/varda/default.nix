@@ -30,6 +30,6 @@
 
   mySystem.services = {
     forgejo.enable = true;
-  }
+  };
 
 }
