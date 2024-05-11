@@ -44,7 +44,7 @@ in
         group = "kah";
       };
       users.groups.kah = { };
-      users.users.truxnell.extraGroups = [ "kah" ];
+      users.users.jahanson.extraGroups = [ "kah" ];
     };
 
 }

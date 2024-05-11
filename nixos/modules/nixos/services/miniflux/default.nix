@@ -67,7 +67,7 @@ in
       restartUnits = [ "${app}.service" ];
     };
 
-    users.users.truxnell.extraGroups = [ group ];
+    users.users.jahanson.extraGroups = [ group ];
     users.users.miniflux = {
       isSystemUser = true;
       group = "miniflux";

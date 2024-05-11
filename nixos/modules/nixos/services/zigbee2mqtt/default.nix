@@ -72,7 +72,7 @@ in
       directories = [{ directory = appFolder; inherit user; inherit group; mode = "750"; }];
     };
 
-    users.users.truxnell.extraGroups = [ app ];
+    users.users.jahanson.extraGroups = [ app ];
 
     services.nginx.virtualHosts."${app}.${config.networking.domain}" = {
       useACMEHost = config.networking.domain;

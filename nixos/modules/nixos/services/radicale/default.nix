@@ -67,7 +67,7 @@ in
       restartUnits = [ "${app}.service" ];
     };
 
-    users.users.truxnell.extraGroups = [ group ];
+    users.users.jahanson.extraGroups = [ group ];
 
     environment.persistence."${config.mySystem.system.impermanence.persistPath}" = lib.mkIf config.mySystem.system.impermanence.enable {
       hideMounts = true;

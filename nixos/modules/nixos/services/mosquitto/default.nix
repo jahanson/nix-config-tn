@@ -51,7 +51,7 @@ in
       directories = [{ directory = appFolder; inherit user; inherit group; mode = "750"; }];
     };
 
-    users.users.truxnell.extraGroups = [ "mosquitto" ];
+    users.users.jahanson.extraGroups = [ "mosquitto" ];
     networking.firewall.allowedTCPPorts = [ 1883 ];
 
   };

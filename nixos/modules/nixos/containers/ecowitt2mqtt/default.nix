@@ -73,7 +73,7 @@ in
       restartUnits = [ "podman-${app}.service" ];
     };
 
-    users.users.truxnell.extraGroups = [ group ];
+    users.users.jahanson.extraGroups = [ group ];
 
 
     # Folder perms - only for containers

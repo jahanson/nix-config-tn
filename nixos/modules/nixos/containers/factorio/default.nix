@@ -45,7 +45,7 @@ in
       };
     };
     # add user to group to view files/storage
-    users.users.truxnell.extraGroups = [ "${app}" ];
+    users.users.jahanson.extraGroups = [ "${app}" ];
 
     sops.secrets."services/${app}/env" = {
       sopsFile = ./secrets.sops.yaml;
