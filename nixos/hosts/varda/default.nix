@@ -28,4 +28,8 @@
 
   swapDevices = [ ];
 
+  mySystem.services = {
+    forgejo.enable = true;
+  }
+
 }
