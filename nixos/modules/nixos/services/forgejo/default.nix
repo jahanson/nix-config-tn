@@ -50,13 +50,13 @@ in
           # Profile Picture > Site Administration > Configuration >  Mailer Configuration 
           mailer = {
             ENABLED = true;
-            SMTP_ADDR = sops.secrets."services/forgejo/smtp/domain";
-            FROM = sops.secrets."services/forgejo/smtp/from";
-            USER = sops.secrets."services/forgejo/smtp/user";
-            SMTP_PORT = sops.secrets."services/forgejo/smtp/port";
+            SMTP_ADDR = config.sops.secrets."services/forgejo/smtp/domain";
+            FROM = config.sops.secrets."services/forgejo/smtp/from";
+            USER = config.sops.secrets."services/forgejo/smtp/user";
+            SMTP_PORT = config.sops.secrets."services/forgejo/smtp/port";
           };
         };
-        mailerPasswordFile = sops.secrets."services/forgejo/smtp/password".path;
+        mailerPasswordFile = config.sops.secrets."services/forgejo/smtp/password".path;
       };
       # sops
       sops.secrets."services/forgejo/smtp/domain" = {
