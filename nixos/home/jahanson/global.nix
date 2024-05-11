@@ -34,6 +34,7 @@ with config;
         dbus
         direnv
         git
+        vim
         nix-index
         python3
         fzf
@@ -80,7 +81,7 @@ with config;
         direnv # shell environment management
         pre-commit # Pre-commit tasks for git
         minio-client # S3 management
-        
+
         # nix tools
         nvd
       ];

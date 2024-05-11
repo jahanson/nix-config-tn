@@ -4,13 +4,11 @@
 
 with config;
 {
-
+  # git & vim are in global
   environment.systemPackages = with pkgs; [
     jq
     yq
     btop
-    vim
-    git
     dnsutils
     nix
 
