@@ -28,5 +28,6 @@
     ./miniflux
     ./calibre-web
     ./rss-bridge
+    ./forgejo
   ];
 }
