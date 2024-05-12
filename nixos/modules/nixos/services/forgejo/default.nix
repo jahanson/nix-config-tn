@@ -17,8 +17,8 @@ in
     config = mkIf cfg.enable {
       services.nginx = {
         virtualHosts.${domain} = {
-          forceSSL = true;
-          enableACME = true;
+          forceSSL = false;
+          enableACME = false;
           extraConfig = ''
             client_max_body_size 512M;
           '';
