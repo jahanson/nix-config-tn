@@ -39,9 +39,7 @@ in
         # Prevent injection of code in other mime types (XSS Attacks)
         add_header X-Content-Type-Options nosniff;
 
-
       '';
-      # TODO add cloudflre IP's when/if I ingest internally.
       commonHttpConfig = ''
         add_header X-Clacks-Overhead "GNU Terry Pratchett";
       '';
@@ -55,12 +53,9 @@ in
           extraConfig = "return 444;";
         };
       };
-
     };
 
-
     networking.firewall = {
-
       allowedTCPPorts = [ 80 443 ];
       allowedUDPPorts = [ 80 443 ];
     };

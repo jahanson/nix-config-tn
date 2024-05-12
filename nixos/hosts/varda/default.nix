@@ -30,6 +30,7 @@
 
   mySystem.services = {
     forgejo.enable = true;
+    nginx.enable = true;
   };
 
 }
