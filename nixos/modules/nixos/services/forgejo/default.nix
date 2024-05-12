@@ -50,39 +50,15 @@ in
           # Profile Picture > Site Administration > Configuration >  Mailer Configuration 
           mailer = {
             ENABLED = true;
-            SMTP_ADDR = config.sops.secrets."services/forgejo/smtp/domain";
-            FROM = config.sops.secrets."services/forgejo/smtp/from";
-            USER = config.sops.secrets."services/forgejo/smtp/user";
-            SMTP_PORT = config.sops.secrets."services/forgejo/smtp/port";
+            SMTP_ADDR = "smtp.mailgun.org";
+            FROM = "git@hsn.dev";
+            USER = "git@mg.hsn.dev";
+            SMTP_PORT = 587;
           };
         };
         mailerPasswordFile = config.sops.secrets."services/forgejo/smtp/password".path;
       };
       # sops
-      sops.secrets."services/forgejo/smtp/domain" = {
-        sopsFile = ./secrets.sops.yaml;
-        owner = serviceUser;
-        mode = "400";
-        restartUnits = [ "forgejo.service" ];
-      };
-      sops.secrets."services/forgejo/smtp/port" = {
-        sopsFile = ./secrets.sops.yaml;
-        owner = serviceUser;
-        mode = "400";
-        restartUnits = [ "forgejo.service" ];
-      };
-      sops.secrets."services/forgejo/smtp/from" = {
-        sopsFile = ./secrets.sops.yaml;
-        owner = serviceUser;
-        mode = "400";
-        restartUnits = [ "forgejo.service" ];
-      };
-      sops.secrets."services/forgejo/smtp/user" = {
-        sopsFile = ./secrets.sops.yaml;
-        owner = serviceUser;
-        mode = "400";
-        restartUnits = [ "forgejo.service" ];
-      };
       sops.secrets."services/forgejo/smtp/password" = {
         sopsFile = ./secrets.sops.yaml;
         owner = serviceUser;
