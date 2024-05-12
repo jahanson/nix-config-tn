@@ -16,7 +16,7 @@ in
 
     config = mkIf cfg.enable {
       services.nginx = {
-        virtualHosts.${cfg.settings.server.DOMAIN} = {
+        virtualHosts.${domain} = {
           forceSSL = true;
           enableACME = true;
           extraConfig = ''
