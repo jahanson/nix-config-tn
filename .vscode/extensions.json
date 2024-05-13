@@ -1,8 +1,11 @@
 {
   "recommendations": [
     "jnoortheen.nix-ide",
-    "shipitsmarter.sops-edit",
-    "ionutvmi.path-autocomplete",
-    "redhat.vscode-yaml"
+    "mikestead.dotenv",
+    "redhat.ansible",
+    "redhat.vscode-yaml",
+    "signageos.signageos-vscode-sops",
+    "pkief.material-icon-theme",
+    "ms-vscode-remote.remote-ssh"
   ]
 }
