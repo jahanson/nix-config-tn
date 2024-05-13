@@ -19,7 +19,7 @@ in
   config = mkIf cfg.enable {
     sops.secrets = {
       "security/acme/env".sopsFile = ./secrets.sops.yaml;
-      "security/acme/env".restartUnits = [ "${app}.service" ];
+      "security/acme/env".restartUnits = [ "lego.service" ];
     };
 
     environment.persistence."${config.mySystem.system.impermanence.persistPath}" = lib.mkIf config.mySystem.system.impermanence.enable {
