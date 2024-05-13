@@ -26,7 +26,6 @@ in
       directories = [ "/var/lib/acme" ];
     };
 
-
     security.acme = {
       acceptTerms = true;
       defaults.email = "admin@${config.networking.domain}";

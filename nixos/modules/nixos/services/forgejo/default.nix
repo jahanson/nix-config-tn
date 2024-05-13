@@ -11,14 +11,13 @@ in
 {
   options.mySystem.services.forgejo = {
     enable = mkEnableOption "Forgejo";
-    openFirewall = mkEnableOption "Open firewall for ${app}" // { default = true; };
   };
 
     config = mkIf cfg.enable {
       services.nginx = {
         virtualHosts.${domain} = {
-          forceSSL = false;
-          enableACME = false;
+          forceSSL = true;
+          useACMEHost = config.networking.domain;
           extraConfig = ''
             client_max_body_size 512M;
           '';
