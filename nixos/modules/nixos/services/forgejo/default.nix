@@ -53,6 +53,10 @@ in
             REPO_INDEXER_INCLUDE = "";
             REPO_INDEXER_EXCLUDE = "resources/bin/**";
           };
+          picture = {
+            AVATAR_UPLOAD_PATH = "/var/lib/forgejo/data/avatars";
+            REPOSITORY_AVATAR_UPLOAD_PATH = "/var/lib/forgejo/data/repo-avatars";
+          };
           # Add support for actions, based on act: https://github.com/nektos/act
           actions = {
             ENABLED = true;
