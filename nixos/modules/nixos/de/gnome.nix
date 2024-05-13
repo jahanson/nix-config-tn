@@ -22,12 +22,11 @@ in
     services = {
       xserver = {
         enable = true;
+        defaultSession = "gnome"; # TODO move to config overlay
+        autoLogin.enable = true;
         displayManager =
           {
             gdm.enable = true;
-            defaultSession = "gnome"; # TODO move to config overlay
-
-            autoLogin.enable = true;
             autoLogin.user = "truxnell"; # TODO move to config overlay
           };
         desktopManager = {
@@ -35,7 +34,7 @@ in
           gnome.enable = true;
         };
 
-        layout = "us"; # `localctl` will give you
+        xkb.layout = "us"; # `localctl` will give you
       };
       udev.packages = optionals cfg.systrayicons [ pkgs.gnome.gnome-settings-daemon ]; # support appindicator
 
