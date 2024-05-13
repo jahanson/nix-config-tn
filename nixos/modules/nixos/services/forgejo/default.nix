@@ -27,6 +27,8 @@ in
 
       services.forgejo = {
         enable = true;
+        # enable sql db dumps daily
+        dump.enable = true;
         database.type = "postgres";
         # Enable support for Git Large File Storage
         lfs.enable = true;
