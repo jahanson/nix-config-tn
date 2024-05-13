@@ -36,13 +36,26 @@ in
             # You need to specify this to remove the port from URLs in the web UI.
             ROOT_URL = "https://${domain}/"; 
             HTTP_PORT = http_port;
+            # Default landing page on 'explore'
+            LANDING_PAGE = "explore";
           };
           # You can temporarily allow registration to create an admin user.
-          service.DISABLE_REGISTRATION = true; 
+          service = {
+            DISABLE_REGISTRATION = true;
+            ENABLE_NOTIFY_MAIL = true;
+            REGISTER_EMAIL_CONFIRM = true;
+            REQUIRE_SIGNIN_VIEW = false;
+          };
+          indexer = {
+            REPO_INDEXER_ENABLED = true;
+            REPO_INDEXER_PATH = "indexers/repos.bleve";
+            MAX_FILE_SIZE = 1048576;
+            REPO_INDEXER_INCLUDE = "";
+            REPO_INDEXER_EXCLUDE = "resources/bin/**";
+          };
           # Add support for actions, based on act: https://github.com/nektos/act
           actions = {
             ENABLED = true;
-            # DEFAULT_ACTIONS_URL = "github";
           };
           # Sending emails is completely optional
           # You can send a test email from the web UI at:
@@ -53,6 +66,10 @@ in
             FROM = "git@hsn.dev";
             USER = "git@mg.hsn.dev";
             SMTP_PORT = 587;
+          };
+          session = {
+            COOKIE_SECURE = true;
+            COOKIE_NAME = "session";
           };
         };
         mailerPasswordFile = config.sops.secrets."services/forgejo/smtp/password".path;
