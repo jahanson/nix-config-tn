@@ -28,4 +28,12 @@
 
   swapDevices = [ ];
 
+  mySystem = {
+    security.acme.enable = true;
+    services = {
+      forgejo.enable = true;
+      nginx.enable = true;
+    };
+  };
+
 }

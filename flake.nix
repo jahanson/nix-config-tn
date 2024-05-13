@@ -3,8 +3,8 @@
 
   inputs = {
     # Nixpkgs and unstable
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     # impermanence
     # https://github.com/nix-community/impermanence
@@ -17,11 +17,18 @@
     # https://github.com/nix-community
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
-    # home-manager - home user+dotfile manager
+    # home-manager - unstable
     # https://github.com/nix-community/home-manager
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # home-manager - stable
+    # https://github.com/nix-community/home-manager
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-23.11";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # sops-nix - secrets with mozilla sops
