@@ -10,6 +10,7 @@ with config;
   mySystem = {
 
     de.gnome.enable = true;
+    editor.vscodium.enable = true;
 
     # Lets see if fish everywhere is OK on the pi's
     # TODO decide if i drop to bash on pis?
@@ -64,8 +65,6 @@ with config;
     lm_sensors
     cpufrequtils
     cpupower-gui
-    vscode
-    vivaldi
   ];
 
   i18n = {
