@@ -1,12 +1,8 @@
-{ pkgs
-, config
-, ...
-}:
+{ pkgs, config, ... }:
 let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in
 {
-
   sops.secrets = {
     jahanson-password = {
       sopsFile = ./secrets.sops.yaml;
@@ -38,7 +34,7 @@ in
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIETR70eQJiXaJuB+qpI1z+jFOPbEZoQNRcq4VXkojWfU"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIATyScd8ZRhV7uZmrQNSAbRTs9N/Dbx+Y8tGEDny30sA"
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJyA/yMPPo+scxBaDFUk7WeEyMAMhXUro5vi4feOKsJT jahanson@durincore"
-    ]; # TODO do i move to ingest github creds?
+    ];
 
     # packages = [ pkgs.home-manager ];
   };
