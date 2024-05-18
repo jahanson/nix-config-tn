@@ -16,15 +16,11 @@ in
         description = "Enable lazymount";
         default = false;
       };
-
   };
-
 
   config = mkIf cfg.enable
     {
-
       services.rpcbind.enable = true; # needed for NFS
-
       environment.systemPackages = with pkgs; [ nfs-utils ];
 
       systemd.mounts = lib.mkIf cfg.lazy [{
@@ -32,7 +28,7 @@ in
         mountConfig = {
           Options = "noatime";
         };
-        what = "daedalus.${config.mySystem.internalDomain}:/tank";
+        what = "${config.mySystem.nasAddress}:/tank";
         where = "/mnt/nas";
       }];
 
@@ -45,9 +41,8 @@ in
       }];
 
       fileSystems."${config.mySystem.nasFolder}" = lib.mkIf (!cfg.lazy) {
-        device = "daedalus.${config.mySystem.internalDomain}:/tank";
+        device = "${config.mySystem.nasAddress}:/tank";
         fsType = "nfs";
       };
-
     };
 }

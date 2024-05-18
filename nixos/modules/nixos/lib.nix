@@ -32,7 +32,6 @@ with lib;
     }
   );
 
-
   # build a restic restore set for both local and remote
   lib.mySystem.mkRestic = options: (
     let
@@ -53,7 +52,6 @@ with lib;
         #
         ${pkgs.restic}/bin/restic unlock --remove-all || true
       '';
-
     in
     {
       # local backup

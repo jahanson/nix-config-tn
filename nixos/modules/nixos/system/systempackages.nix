@@ -16,11 +16,9 @@ in
         default = [ ];
       };
   };
-
   # System packages deployed globally.
   # This is NixOS so lets keep this liiight?
   # Ideally i'd keep most of it to home-manager user only stuff
   # and keep server role as light as possible
   config.environment.systemPackages = cfg.packages;
-
 }

@@ -17,9 +17,7 @@ in
           type = lib.types.bool;
           description = "If we want to add fish plugins";
           default = true;
-
         };
-
     };
 
   # Install fish systemwide

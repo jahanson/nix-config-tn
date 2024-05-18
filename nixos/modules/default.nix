@@ -1,5 +1,3 @@
 {
-
   mySystem = import ./nixos;
-
 }

@@ -21,10 +21,7 @@ with lib;
       type = lib.types.str;
       default = "/persist";
     };
-
   };
-
-
   config = lib.mkIf cfg.enable {
     # move ssh keys
 
@@ -45,7 +42,6 @@ with lib;
           "/var/log" # persist logs between reboots for debugging
           "/var/lib/cache" # cache files (restic, nginx, contaienrs)
           "/var/lib/nixos" # nixos state
-
         ];
       files = [
         "/etc/machine-id"

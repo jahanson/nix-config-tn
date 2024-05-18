@@ -6,7 +6,6 @@ with lib;
     ./programs
     ./services
     ./de
-    ./editor
     ./hardware
     ./containers
     ./lib.nix
@@ -23,6 +22,11 @@ with lib;
     type = types.str;
     description = "folder where nas mounts reside";
     default = "/mnt/nas";
+  };
+  options.mySystem.nasAddress = mkOption {
+    type = types.str;
+    description = "NAS Address or name for the backup nas";
+    default = "10.1.1.13";
   };
   options.mySystem.domain = mkOption {
     type = types.str;

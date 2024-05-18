@@ -46,8 +46,6 @@ in
           description = "Enable local backups";
           default = true;
         };
-
-
     };
 
   config = mkIf cfg.enable {
@@ -122,8 +120,5 @@ in
         inherit appFolder;
 
       };
-
-
-
   };
 }

@@ -35,8 +35,6 @@ in
       };
 
   };
-
-
   config = {
 
     # Warn if backups are disable and machine isnt a dev box
@@ -64,8 +62,6 @@ in
         directories = [ "/var/lib/containers" ];
       };
     };
-
-
 
     # useful commands:
     # view snapshots - zfs list -t snapshot
@@ -106,8 +102,6 @@ in
           mount -t zfs rpool/safe/persist@restic_nightly_snap ${cfg.mountPath}
         '';
       };
-
-
     };
   };
 }
