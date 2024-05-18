@@ -2,6 +2,10 @@
 
 [Repository Documentation](https://truxnell.github.io/nix-config/)
 
+## Thank you Truxnell
+
+Thank you for a lot of the groundwork you laid for the base nixos configuration and a lot of modules!
+
 ## Getting started
 
 To Install

@@ -73,7 +73,6 @@
         "aarch64-linux"
         "x86_64-linux"
       ];
-
     in
     rec {
       # Use nixpkgs-fmt for 'nix fmt'
@@ -91,11 +90,8 @@
       );
 
       nixosConfigurations =
-        with self.lib;
         let
-          specialArgs = {
-            inherit inputs outputs;
-          };
+          inherit inputs outputs;
           # Import overlays for building nixosconfig with them.
           overlays = import ./nixos/overlays { inherit inputs; };
 
@@ -145,9 +141,10 @@
 
             };
         in
-        rec {
+        {
           "durincore" = mkNixosConfig {
-            # NixOS laptop - T470 Thinkpad
+            # T470 Thinkpad
+            # Nix dev laptop
             hostname = "durincore";
             system = "x86_64-linux";
             hardwareModules = [
@@ -162,7 +159,7 @@
           };
           "varda" = mkNixosConfig {
             # Arm64 cax21 @ Hetzner
-
+            # forgejo server
             hostname = "varda";
             system = "aarch64-linux";
             hardwareModules = [
@@ -186,5 +183,4 @@
         in
         nixtop;
     };
-
 }
