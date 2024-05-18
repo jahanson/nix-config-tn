@@ -80,7 +80,7 @@
       formatter = forAllSystems (system: nixpkgs.legacyPackages."${system}".nixpkgs-fmt);
 
       # setup devshells against shell.nix
-      devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
+      # devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
 
       # extend lib with my custom functions
       lib = nixpkgs.lib.extend (
