@@ -62,17 +62,6 @@ in
       addr = "127.0.0.1";
     };
 
-    # homepage integration
-    mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
-      {
-        ${app} = {
-          icon = "${app}.svg";
-          href = "https://${url}";
-          inherit description;
-        };
-      }
-    ];
-
     ### gatus integration
     mySystem.services.gatus.monitors = mkIf cfg.monitor [
       {
