@@ -29,6 +29,7 @@
   swapDevices = [ ];
 
   mySystem = {
+    system.motd.networkInterfaces = [ "enp1s0" ];
     security.acme.enable = true;
     services = {
       forgejo.enable = true;

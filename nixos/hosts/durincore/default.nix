@@ -28,5 +28,9 @@
 
     swapDevices = [ ];
 
+    mySystem = {
+      system.motd.networkInterfaces = [ "enp0s31f6" "wlp4s0" ];
+    };
+
   };
 }
