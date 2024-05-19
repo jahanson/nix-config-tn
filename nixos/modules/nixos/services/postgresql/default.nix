@@ -9,13 +9,7 @@ let
   app = "postgresql";
   category = "services";
   description = "Postgres RDMS";
-  # user = "%{user kah}"; #string
-  # group = "%{group kah}"; #string
-  # port = 1234; #int
   appFolder = "/var/lib/${app}";
-  # persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
-  # host = "${app}" + (if cfg.dev then "-dev" else "");
-  # url = "${host}.${config.networking.domain}";
 in
 {
   options.mySystem.${category}.${app} =
@@ -38,14 +32,6 @@ in
     };
 
   config = mkIf cfg.enable {
-
-    ## Secrets
-    # sops.secrets."${category}/${app}/env" = {
-    #   sopsFile = ./secrets.sops.yaml;
-    #   owner = user;
-    #   group = group;
-    #   restartUnits = [ "${app}.service" ];
-    # };
 
     services.postgresql = {
       enable = true;
@@ -72,17 +58,12 @@ in
       location = "${config.mySystem.nasFolder}/backup/nixos/postgresql";
     };
 
-
-
     ### firewall config
 
     # networking.firewall = mkIf cfg.openFirewall {
     #   allowedTCPPorts = [ port ];
     #   allowedUDPPorts = [ port ];
     # };
-
-
-
 
   };
 }

@@ -14,7 +14,6 @@ in
         type = lib.types.bool;
         description = "If we want to auto optimise store";
         default = true;
-
       };
     gc = {
       enable = mkEnableOption "automatic garbage collection" // {
@@ -27,13 +26,10 @@ in
           default = true;
         };
     };
-
   };
 
   config.nix = {
-
     optimise.automatic = cfg.autoOptimiseStore;
-
     # automatically garbage collect nix store
     gc = mkIf cfg.gc.enable {
       # garbage collection
@@ -42,8 +38,5 @@ in
       options = "--delete-older-than 7d";
       inherit (cfg.gc) persistent;
     };
-
   };
-
-
 }

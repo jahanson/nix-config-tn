@@ -1,6 +1,4 @@
 { config, lib, pkgs, imports, boot, ... }:
-
-with lib;
 {
   boot = {
     # Use the systemd-boot EFI boot loader.

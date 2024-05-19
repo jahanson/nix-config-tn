@@ -28,12 +28,6 @@ in
           description = "Enable gatus monitoring";
           default = true;
         };
-      #   prometheus = mkOption
-      #     {
-      #       type = lib.types.bool;
-      #       description = "Enable prometheus scraping";
-      #       default = true;
-      #     };
       addToDNS = mkOption
         {
           type = lib.types.bool;
@@ -58,14 +52,6 @@ in
 
   config = mkIf cfg.enable {
 
-    ## Secrets
-    # sops.secrets."${category}/${app}/env" = {
-    #   sopsFile = ./secrets.sops.yaml;
-    #   owner = user;
-    #   group = group;
-    #   restartUnits = [ "${app}.service" ];
-    # };
-
     users.users.jahanson.extraGroups = [ group ];
 
     ## service
@@ -75,17 +61,6 @@ in
       domain = host;
       addr = "127.0.0.1";
     };
-
-    # homepage integration
-    mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
-      {
-        ${app} = {
-          icon = "${app}.svg";
-          href = "https://${url}";
-          inherit description;
-        };
-      }
-    ];
 
     ### gatus integration
     mySystem.services.gatus.monitors = mkIf cfg.monitor [

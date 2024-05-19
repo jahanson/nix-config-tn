@@ -62,6 +62,5 @@ in
 
     # required for using acme certs
     users.users.nginx.extraGroups = [ "acme" ];
-
   };
 }

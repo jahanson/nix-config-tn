@@ -10,7 +10,7 @@ in
     timeZone = lib.mkOption {
       type = lib.types.str;
       description = "Timezone of system";
-      default = "Australia/Melbourne";
+      default = "America/Chicago";
     };
     hwClockLocalTime = lib.mkOption {
       type = lib.types.bool;

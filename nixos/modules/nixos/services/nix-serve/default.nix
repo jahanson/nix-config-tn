@@ -19,6 +19,4 @@ in
     openFirewall = true;
 
   };
-
-
 }

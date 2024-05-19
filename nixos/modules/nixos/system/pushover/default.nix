@@ -29,7 +29,6 @@ in
       description = "Notify on failed unit %i";
       serviceConfig = {
         Type = "oneshot";
-        # User = config.users.users.jahanson.name;
         EnvironmentFile = config.sops.secrets."services/pushover/env".path;
       };
 
@@ -49,9 +48,7 @@ in
           --form-string "title=Unit failure: '$1' on $2" \
           --form-string "message=<b>$1</b> has failed on <b>$2</b><br><u>Journal tail:</u><br><br><i>$(journalctl -u $1 -n 10 -o cat)</i>" \
           https://api.pushover.net/1/messages.json 2&>1
-
       '';
     };
-
   };
 }

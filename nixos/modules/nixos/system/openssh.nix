@@ -15,14 +15,12 @@ in
         type = lib.types.bool;
         description = "If password can be accepted for ssh (commonly disable for security hardening)";
         default = false;
-
       };
     permitRootLogin = mkOption
       {
         type = types.enum [ "yes" "without-password" "prohibit-password" "forced-commands-only" "no" ];
         description = "If root can login via ssh (commonly disable for security hardening)";
         default = "no";
-
       };
   };
 
@@ -42,8 +40,6 @@ in
         # Allow forwarding ports to everywhere
         GatewayPorts = "clientspecified";
       };
-
     };
-
   };
 }

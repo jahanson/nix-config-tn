@@ -56,21 +56,7 @@ in
       };
     };
 
-
-    mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
-      {
-        Backrest = {
-          icon = "${app}.svg";
-          href = "https://${app}.${config.mySystem.domain}";
-
-          description = "Local restic backup browser";
-          container = "${app}";
-        };
-      }
-    ];
-
     mySystem.services.gatus.monitors = [{
-
       name = app;
       group = "infrastructure";
       url = "https://${app}.${config.mySystem.domain}";

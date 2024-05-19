@@ -9,12 +9,10 @@ let
   app = "radicale";
   category = "services";
   description = "Contact/Calendar managment";
-  #   image = "%{image}";
   user = app; #string
   group = app; #string
   port = 5232; #int
   appFolder = "/var/lib/${app}";
-  # persistentFolder = "${config.mySystem.persistentFolder}/var/lib/${appFolder}";
   host = "${app}" + (if cfg.dev then "-dev" else "");
   url = "${host}.${config.networking.domain}";
 in
@@ -89,18 +87,7 @@ in
 
       };
     };
-
-    # homepage integration
-    mySystem.services.homepage.infrastructure = mkIf cfg.addToHomepage [
-      {
-        ${app} = {
-          icon = "${app}.svg";
-          href = "https://${ url }";
-          inherit description;
-        };
-      }
-    ];
-
+    
     ### gatus integration
     mySystem.services.gatus.monitors = mkIf cfg.monitor [
       {
