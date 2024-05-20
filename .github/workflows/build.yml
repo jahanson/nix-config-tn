@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Create nix mount point
         if: contains(matrix.os, 'x86_64')
-        run: sudo mkdir /nix
+        run: mkdir /nix
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
         with:
