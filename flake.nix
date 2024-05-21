@@ -77,6 +77,11 @@
     rec {
       # Use nixpkgs-fmt for 'nix fmt'
       formatter = forAllSystems (system: nixpkgs.legacyPackages."${system}".nixpkgs-fmt);
+      buildPhase = forAllSystems (system: nixpkgs.legacyPackages."${system}".stdenv.mkDerivation {
+        buildPhase = ''
+          export HOME=$(pwd)
+        '';
+      });
 
       # setup devshells against shell.nix
       # devShells = forAllSystems (pkgs: import ./shell.nix { inherit pkgs; });
