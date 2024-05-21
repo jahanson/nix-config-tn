@@ -23,7 +23,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install sudo
-        run: sudo apt update && sudo apt install -y sudo
+        run: apt update && apt install -y sudo
       - name: Install Nix
         uses: https://github.com/cachix/install-nix-action@v26
         with:
