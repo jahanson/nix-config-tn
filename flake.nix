@@ -99,6 +99,7 @@
           mkNixosConfig =
             { hostname
             , system ? "x86_64-linux"
+            , buildPhase ? ""
             , nixpkgs ? inputs.nixpkgs
             , hardwareModules ? [ ]
               # basemodules is the base of the entire machine building
@@ -143,6 +144,10 @@
             # Nix dev laptop
             hostname = "durincore";
             system = "x86_64-linux";
+            buildPhase = ''
+              # this line removes a bug where value of $HOME is set to a non-writable /homeless-shelter dir
+              export HOME=$(pwd)
+            '';
             hardwareModules = [
               ./nixos/profiles/hw-thinkpad-t470.nix
               inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t470s
@@ -158,6 +163,10 @@
             # forgejo server
             hostname = "varda";
             system = "aarch64-linux";
+            buildPhase = ''
+              # this line removes a bug where value of $HOME is set to a non-writable /homeless-shelter dir
+              export HOME=$(pwd)
+            '';
             hardwareModules = [
               ./nixos/profiles/hw-hetzner-cax.nix
             ];
