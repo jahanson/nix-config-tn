@@ -16,46 +16,22 @@ jobs:
     runs-on: ${{ matrix.os }}
     container:
       image: docker.io/library/ubuntu:latest
+    env:
+      PATH: ${{ format('{0}:{1}', '/run/current-system/sw/bin', env.PATH) }}
     steps:
-      - name: Install sudo and node
-        if: contains(matrix.os, 'ubuntu')
-        # For compatibility with actions and debian
-        run: apt update && apt install -y nodejs npm sudo udev curl lvm2
-      - name: Create nix mount point
-        if: contains(matrix.os, 'ubuntu')
-        run: sudo mkdir /nix
-      - name: Maximize build space
-        if: contains(matrix.os, 'ubuntu')
-        uses: https://github.com/easimon/maximize-build-space@v10
-        with:
-          root-reserve-mb: 512
-          swap-size-mb: 1024
-          build-mount-path: "/nix"
-          remove-dotnet: true
-          remove-android: true
-          remove-haskell: true
-          remove-codeql: true
-          overprovision-lvm: true
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Install Nix
-        if: contains(matrix.os, 'ubuntu')
-        uses: https://github.com/cachix/install-nix-action@v26
-        with:
-          extra_nix_config: |
-            experimental-features = nix-command flakes
-          nix_path: nixpkgs=channel:nixos-unstable
-      # - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
+      - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
       - uses: https://github.com/cachix/cachix-action@v14
         if: ${{ !github.event.pull_request.head.repo.fork }}
         with:
           name: hsndev
           # If you chose API tokens for write access OR if you have a private cache
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-        env:
-          USER: 'root'
+        # env:
+          # USER: 'root'
 
       - name: Garbage collect build dependencies
         run: nix-collect-garbage
@@ -71,13 +47,3 @@ jobs:
             -v \
             --log-format raw \
              > >(tee stdout.log) 2> >(tee /tmp/nix-build-err.log >&2)
-  nix-build-success:
-    if: ${{ always() }}
-    needs:
-      - nix-build
-    name: Nix Build Successful
-    runs-on: docker
-    steps:
-      - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
-        name: Check matrix status
-        run: exit 1
