@@ -49,6 +49,7 @@ jobs:
           NIX_STORE_DIR: /nix/store
           NIX_STATE_DIR: /nix/var/nix
           NIX_LOG_DIR: /nix/var/log/nix
+          HOME: /root
         run: |
           set -o pipefail
           nix build \
