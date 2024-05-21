@@ -13,7 +13,7 @@ jobs:
             os: aarch64-native
           - system: durincore
             os: x86_64
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }} 
     steps:
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
