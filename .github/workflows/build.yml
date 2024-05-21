@@ -49,11 +49,7 @@ jobs:
         run: nix-collect-garbage
 
       - name: Build new ${{ matrix.system }} system
-        env:
-          NIX_STORE_DIR: /nix/store
-          NIX_STATE_DIR: /nix/var/nix
-          NIX_LOG_DIR: /nix/var/log/nix
-          HOME: /root
+        shell: bash
         run: |
           set -o pipefail
           nix build \
