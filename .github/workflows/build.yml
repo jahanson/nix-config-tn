@@ -10,15 +10,25 @@ jobs:
       matrix:
         include:
           - system: varda
-            os: aarch64-native
+            os: ubuntu-aarch64
           - system: durincore
-            os: x86_64
-    runs-on: ${{ matrix.os }} 
+            os: ubuntu-x86_64
+    runs-on: ${{ matrix.os }}
     steps:
+      # - name: Create nix mount point
+        # if: contains(matrix.os, 'ubuntu-x86_64')
+        # run: sudo mkdir /nix
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install Nix
+        uses: https://github.com/cachix/install-nix-action@v26
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+          nix_path: nixpkgs=channel:nixos-unstable
+      - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
       - uses: https://github.com/cachix/cachix-action@v14
         if: ${{ !github.event.pull_request.head.repo.fork }}
         with:
