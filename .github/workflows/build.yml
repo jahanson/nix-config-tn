@@ -31,6 +31,8 @@ jobs:
       #   run: apt update && apt install -y sudo
       - name: Install Nix
         uses: https://github.com/cachix/install-nix-action@v26
+        env:
+          HOME: '/tmp'
         with:
           extra_nix_config: |
             experimental-features = nix-command flakes
@@ -44,6 +46,7 @@ jobs:
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
         env:
           USER: 'root'
+          HOME: '/tmp'
 
       - name: Garbage collect build dependencies
         run: nix-collect-garbage
@@ -51,7 +54,7 @@ jobs:
       - name: Build new ${{ matrix.system }} system
         shell: bash
         env:
-          HOME: /tmp
+          HOME: '/tmp'
         run: |
           set -o pipefail
           nix build \
