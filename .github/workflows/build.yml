@@ -50,10 +50,10 @@ jobs:
 
       - name: Build new ${{ matrix.system }} system
         shell: bash
+        env:
+          HOME: /tmp
         run: |
           set -o pipefail
-          rm -rf /homeless-shelter
-          export HOME=$(pwd)
           nix build \
             ".#top.${{ matrix.system }}" \
             --profile ./profile \
