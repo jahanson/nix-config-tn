@@ -18,6 +18,9 @@ jobs:
       # - name: Create nix mount point
         # if: contains(matrix.os, 'ubuntu-x86_64')
         # run: sudo mkdir /nix
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
         with:
