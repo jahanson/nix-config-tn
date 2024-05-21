@@ -22,6 +22,8 @@ jobs:
         uses: https://github.com/actions/checkout@v4
         with:
           fetch-depth: 0
+      - name: Install sudo
+        run: sudo apt update && sudo apt install -y sudo
       - name: Install Nix
         uses: https://github.com/cachix/install-nix-action@v26
         with:
@@ -49,13 +51,13 @@ jobs:
   #           -v \
   #           --log-format raw \
   #            > >(tee stdout.log) 2> >(tee /tmp/nix-build-err.log >&2)
-  # nix-build-success:
-  #   if: ${{ always() }}
-  #   needs:
-  #     - nix-build
-  #   name: Nix Build Successful
-  #   runs-on: docker
-  #   steps:
-  #     - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
-  #       name: Check matrix status
-  #       run: exit 1
+  nix-build-success:
+    if: ${{ always() }}
+    needs:
+      - nix-build
+    name: Nix Build Successful
+    runs-on: docker
+    steps:
+      - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+        name: Check matrix status
+        run: exit 1
