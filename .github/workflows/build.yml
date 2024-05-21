@@ -31,7 +31,7 @@ jobs:
           extra_nix_config: |
             experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
-      - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
+      # - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
       - uses: https://github.com/cachix/cachix-action@v14
         if: ${{ !github.event.pull_request.head.repo.fork }}
         with:
