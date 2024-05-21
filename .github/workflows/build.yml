@@ -21,7 +21,7 @@ jobs:
         # if: contains(matrix.os, 'ubuntu-x86_64')
         # run: sudo mkdir /nix
       - name: Install sudo and node
-        run: apt update && apt install -y nodejs npm sudo udevadm
+        run: apt update && apt install -y nodejs npm sudo udev
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
         with:
