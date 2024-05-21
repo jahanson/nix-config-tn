@@ -94,7 +94,6 @@
           inherit inputs outputs;
           # Import overlays for building nixosconfig with them.
           overlays = import ./nixos/overlays { inherit inputs; };
-
           # generate a base nixos configuration with the
           # specified overlays, hardware modules, and any extraModules applied
           mkNixosConfig =
@@ -118,7 +117,6 @@
                     extraSpecialArgs = {
                       inherit inputs hostname system;
                     };
-
                   };
                 }
               ]
@@ -129,7 +127,6 @@
               modules = baseModules ++ hardwareModules ++ profileModules;
               specialArgs = { inherit self inputs nixpkgs; };
               # Add our overlays
-
               pkgs = import nixpkgs {
                 inherit system;
                 overlays = builtins.attrValues overlays;
@@ -138,7 +135,6 @@
                   allowUnfreePredicate = _: true;
                 };
               };
-
             };
         in
         {
@@ -168,7 +164,6 @@
             profileModules = [
               ./nixos/profiles/role-server.nix
               { home-manager.users.jahanson = ./nixos/home/jahanson/server.nix; }
-
             ];
           };
         };
