@@ -18,9 +18,6 @@ jobs:
       # - name: Create nix mount point
         # if: contains(matrix.os, 'ubuntu-x86_64')
         # run: sudo mkdir /nix
-      - uses: https://github.com/actions/setup-node@v4
-        with:
-          node-version: 20
       - name: Checkout repository
         uses: https://github.com/actions/checkout@v4
         with:
@@ -32,33 +29,33 @@ jobs:
             experimental-features = nix-command flakes
           nix_path: nixpkgs=channel:nixos-unstable
       - uses: https://github.com/DeterminateSystems/magic-nix-cache-action@main
-      - uses: https://github.com/cachix/cachix-action@v14
-        if: ${{ !github.event.pull_request.head.repo.fork }}
-        with:
-          name: hsndev
-          # If you chose API tokens for write access OR if you have a private cache
-          authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
+  #     - uses: https://github.com/cachix/cachix-action@v14
+  #       if: ${{ !github.event.pull_request.head.repo.fork }}
+  #       with:
+  #         name: hsndev
+  #         # If you chose API tokens for write access OR if you have a private cache
+  #         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
 
-      - name: Garbage collect build dependencies
-        run: nix-collect-garbage
+  #     - name: Garbage collect build dependencies
+  #       run: nix-collect-garbage
 
-      - name: Build new ${{ matrix.system }} system
-        run: |
-          set -o pipefail
-          nix build \
-            ".#top.${{ matrix.system }}" \
-            --profile ./profile \
-            --fallback \
-            -v \
-            --log-format raw \
-             > >(tee stdout.log) 2> >(tee /tmp/nix-build-err.log >&2)
-  nix-build-success:
-    if: ${{ always() }}
-    needs:
-      - nix-build
-    name: Nix Build Successful
-    runs-on: docker
-    steps:
-      - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
-        name: Check matrix status
-        run: exit 1
+  #     - name: Build new ${{ matrix.system }} system
+  #       run: |
+  #         set -o pipefail
+  #         nix build \
+  #           ".#top.${{ matrix.system }}" \
+  #           --profile ./profile \
+  #           --fallback \
+  #           -v \
+  #           --log-format raw \
+  #            > >(tee stdout.log) 2> >(tee /tmp/nix-build-err.log >&2)
+  # nix-build-success:
+  #   if: ${{ always() }}
+  #   needs:
+  #     - nix-build
+  #   name: Nix Build Successful
+  #   runs-on: docker
+  #   steps:
+  #     - if: ${{ contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') }}
+  #       name: Check matrix status
+  #       run: exit 1
