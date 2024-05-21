@@ -14,8 +14,6 @@ jobs:
           - system: durincore
             os: ubuntu-x86_64
     runs-on: ${{ matrix.os }}
-    container:
-      image: docker.io/library/ubuntu:latest
     env:
       PATH: ${{ format('{0}:{1}', '/run/current-system/sw/bin', env.PATH) }}
     steps:
