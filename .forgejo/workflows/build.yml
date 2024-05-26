@@ -1,7 +1,6 @@
 name: "Build"
 on:
   pull_request:
-  push:
 jobs:
   nix-build:
     if: github.event.pull_request.draft == false
