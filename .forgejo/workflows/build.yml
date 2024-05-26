@@ -45,4 +45,6 @@ jobs:
              > >(tee stdout.log) 2> >(tee /tmp/nix-build-err.log >&2)
       - name: Push to Cachix
         if: success()
+        env:
+          CACHIX_AUTH_TOKEN: ${{ secrets.CACHIX_AUTH_TOKEN }}
         run: nix build ".#top.${{ matrix.system }}" --json | jq -r .[].drvPath | cachix push hsndev
