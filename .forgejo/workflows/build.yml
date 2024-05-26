@@ -12,7 +12,7 @@ jobs:
           - system: varda
             os: native-aarch64
           - system: durincore
-            os: ubuntu-x86_64
+            os: native-x86_64
     runs-on: ${{ matrix.os }}
     env:
       PATH: ${{ format('{0}:{1}', '/run/current-system/sw/bin', env.PATH) }}
