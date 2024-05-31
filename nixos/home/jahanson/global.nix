@@ -1,4 +1,4 @@
-{ lib, pkgs, self, config, ... }:
+{ pkgs, config, ... }:
 with config;
 {
 
@@ -79,7 +79,6 @@ with config;
         # dev utils
         direnv # shell environment management
         envsubst
-        lazygit
 
         # nix tools
         nvd

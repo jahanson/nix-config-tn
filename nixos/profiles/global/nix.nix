@@ -1,4 +1,4 @@
-{ lib, config, pkgs, nixpkgs, self, ... }:
+{ lib, nixpkgs, ... }:
 {
   ## Below is to align shell/system to flake's nixpkgs
   ## ref: https://nixos-and-flakes.thiscute.world/best-practices/nix-path-and-flake-registry
@@ -13,8 +13,6 @@
     # but NIX_PATH is still used by many useful tools, so we set it to the same value as the one used by this flake.
     # https://github.com/NixOS/nix/issues/9574
     settings.nix-path = lib.mkForce "nixpkgs=/etc/nix/inputs/nixpkgs";
-
-    ###
 
     settings = {
       # Enable flakes

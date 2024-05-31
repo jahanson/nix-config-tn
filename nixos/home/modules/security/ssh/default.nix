@@ -1,8 +1,4 @@
-{ config
-, pkgs
-, lib
-, ...
-}:
+{ config, lib, ... }:
 with lib; let
   cfg = config.myHome.security.ssh;
 in

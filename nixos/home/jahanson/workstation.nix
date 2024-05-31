@@ -1,4 +1,4 @@
-{ lib, pkgs, self, config, inputs, ... }:
+{ pkgs, config, ... }:
 with config;
 {
   imports = [
@@ -13,9 +13,9 @@ with config;
 
     git = {
       enable = true;
-      username = "jahanson";
+      username = "Joseph Hanson";
       email = "joe@veri.dev";
-      # signingKey = ""; # TODO setup signing keys n shit
+      signingKey = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIDSAmssproxG+KsVn2DfuteBAemHrmmAFzCtldpKl4J";
     };
   };
 

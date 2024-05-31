@@ -45,6 +45,11 @@ in
           rebase = {
             autoStash = true;
           };
+          user = {
+            signingKey = cfg.signingKey;
+          };
+          gpg.format = "ssh";
+          gpg.program = "${pkgs._1password}/bin/op-ssh-sign";
         };
         aliases = {
           co = "checkout";
@@ -62,15 +67,12 @@ in
           # Python virtualenvs
           ".venv"
         ];
-        # signing = lib.mkIf (cfg.signingKey != "") {
-        #   signByDefault = true;
-        #   key = cfg.signingKey;
-        # };
       };
 
       home.packages = [
         pkgs.git-filter-repo
         pkgs.tig
+        pkgs.lazygit
       ];
     })
   ];
