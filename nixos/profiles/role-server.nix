@@ -1,15 +1,10 @@
-{ config, lib, pkgs, imports, boot, self, ... }:
+{ config, lib, ... }:
 # Role for headless servers
 # covers raspi's, sbc, NUC etc, anything
 # that is headless and minimal for running services
-
 with lib;
 {
-
-
   config = {
-
-
     # Enable monitoring for remote scraiping
     mySystem.services.promMonitoring.enable = true;
     mySystem.services.rebootRequiredCheck.enable = true;
@@ -32,8 +27,10 @@ with lib;
     };
 
     services.logrotate.enable = mkDefault true;
-
-    environment.noXlibs = mkDefault true;
+    environment = {
+      noXlibs = mkDefault true;
+      systemPackages = [ pkgs.lazygit ];
+    };
     documentation = {
       enable = mkDefault false;
       doc.enable = mkDefault false;
@@ -41,19 +38,10 @@ with lib;
       man.enable = mkDefault false;
       nixos.enable = mkDefault false;
     };
-    programs.command-not-found.enable = mkDefault false;
 
+    programs.command-not-found.enable = mkDefault false;
     sound.enable = false;
     hardware.pulseaudio.enable = false;
-
-
     services.udisks2.enable = mkDefault false;
-    # xdg = {
-    #   autostart.enable = mkDefault false;
-    #   icons.enable = mkDefault false;
-    #   mime.enable = mkDefault true;
-    #   sounds.enable = mkDefault false;
-    # };
   };
-
 }
