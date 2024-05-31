@@ -33,24 +33,19 @@ in
         userEmail = cfg.email;
 
         extraConfig = {
-          core = {
-            autocrlf = "input";
-          };
-          init = {
-            defaultBranch = "main";
-          };
-          pull = {
-            rebase = true;
-          };
-          rebase = {
-            autoStash = true;
-          };
-          user = {
-            signingKey = cfg.signingKey;
-          };
+          core.autocrlf = "input";
+          init.defaultBranch = "main";
+          pull.rebase = true;
+          rebase.autoStash = true;
+          # public key for signing commits
+          user.signingKey = cfg.signingKey;
+          # ssh instead of gpg
           gpg.format = "ssh";
           # gpg.ssh.program = "/etc/profiles/per-user/jahanson/bin/op-ssh-sign";
+          # 1password signing gui git signing
           gpg.ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
+          # Auto sign commits without -S
+          commit.gpgsign = true;  
         };
         aliases = {
           co = "checkout";
