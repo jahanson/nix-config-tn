@@ -5,5 +5,4 @@
     ./system.nix
     ./users.nix
   ];
-
 }

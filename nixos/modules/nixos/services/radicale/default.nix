@@ -1,20 +1,14 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.${category}.${app};
   app = "radicale";
   category = "services";
-  description = "Contact/Calendar managment";
   user = app; #string
   group = app; #string
   port = 5232; #int
   appFolder = "/var/lib/${app}";
-  host = "${app}" + (if cfg.dev then "-dev" else "");
-  url = "${host}.${config.networking.domain}";
+  url = "${app}.jahanson.tech";
 in
 {
   options.mySystem.${category}.${app} =
@@ -33,26 +27,12 @@ in
           description = "Enable prometheus scraping";
           default = true;
         };
-      addToDNS = mkOption
-        {
-          type = lib.types.bool;
-          description = "Add to DNS list";
-          default = true;
-        };
-      dev = mkOption
-        {
-          type = lib.types.bool;
-          description = "Development instance";
-          default = false;
-        };
       backups = mkOption
         {
           type = lib.types.bool;
           description = "Enable local backups";
           default = true;
         };
-
-
     };
 
   config = mkIf cfg.enable {
@@ -83,8 +63,7 @@ in
           htpasswd_encryption = "plain";
           realm = "Radicale - Password Required";
         };
-        storage.filesystem_folder = "/var/lib/radicale/collections"; # TODO impermance/move?
-
+        storage.filesystem_folder = "/var/lib/radicale/collections";
       };
     };
     
@@ -126,9 +105,6 @@ in
         inherit app user;
         paths = [ appFolder ];
         inherit appFolder;
-
       });
-
-
   };
 }

@@ -1,12 +1,10 @@
-{ config, lib, pkgs, imports, boot, self, inputs, ... }:
+{ config, lib, pkgs, ... }:
 # Role for workstations
 # Covers desktops/laptops, expected to have a GUI and do workloads
 # Will have home-manager installs
 
 with config;
 {
-
-
   mySystem = {
 
     de.gnome.enable = true;
@@ -15,20 +13,20 @@ with config;
     # TODO decide if i drop to bash on pis?
     shell.fish.enable = true;
 
-    nfs.nas = {
-      enable = true;
-      lazy = true;
-    };
+    # TODO make nfs server configurable
+    # nfs.nas = {
+    #   enable = true;
+    #   lazy = true;
+    # };
+
     system.resticBackup.local.enable = false;
     system.resticBackup.remote.enable = false;
 
   };
 
   boot = {
-
     binfmt.emulatedSystems = [ "aarch64-linux" ]; # Enabled for raspi4 compilation
     plymouth.enable = true; # hide console with splash screen
-
   };
 
   nix.settings = {

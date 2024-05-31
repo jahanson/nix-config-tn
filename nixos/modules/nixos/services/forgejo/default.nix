@@ -1,9 +1,7 @@
-{ lib, pkgs, config, ... }:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.services.forgejo;
-  app = "forgejo";
-  port = 443;
   http_port = 3000;
   serviceUser = "forgejo";
   domain = "git.hsn.dev";

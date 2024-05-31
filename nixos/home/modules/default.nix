@@ -1,8 +1,5 @@
-{ inputs
-, config
-, lib
-, ...
-}: {
+{ lib, ... }: {
+  
   imports = [
     ./shell
     ./programs

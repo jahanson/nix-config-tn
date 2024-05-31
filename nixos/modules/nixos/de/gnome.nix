@@ -1,9 +1,4 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
-
+{ lib, config, pkgs, ... }:
 with lib;
 let
   cfg = config.mySystem.de.gnome;
@@ -12,7 +7,6 @@ in
   options.mySystem.de.gnome.enable = mkEnableOption "GNOME";
   options.mySystem.de.gnome.systrayicons = mkEnableOption "Enable systray icons" // { default = true; };
   options.mySystem.de.gnome.gsconnect = mkEnableOption "Enable gsconnect (KDEConnect for GNOME)" // { default = true; };
-
 
   config = mkIf cfg.enable {
 
@@ -38,17 +32,12 @@ in
           # GNOME
           gnome.enable = true;
         };
-
       };
 
       udev.packages = optionals cfg.systrayicons [ pkgs.gnome.gnome-settings-daemon ]; # support appindicator
-
-
     };
 
     # systyray icons
-
-
     # extra pkgs and extensions
     environment = {
       systemPackages = with pkgs; [
@@ -62,9 +51,7 @@ in
         # dont forget to enable them per-user in dconf settings -> "org/gnome/shell"
         gnomeExtensions.vitals
         gnomeExtensions.caffeine
-        gnomeExtensions.spotify-tray
         gnomeExtensions.dash-to-dock
-
       ]
       ++ optionals cfg.systrayicons [ pkgs.gnomeExtensions.appindicator ];
     };
@@ -89,20 +76,8 @@ in
     systemd.services."getty@tty1".enable = false;
     systemd.services."autovt@tty1".enable = false;
 
-    # TODO tidy this
-    # port forward for GNOME when using RDP***REMOVED***
-
-    # for RDP TODO make this a flag if RDP is enabled per host
-    networking.firewall.allowedTCPPorts = [
-      3389
-    ];
-
     # And dconf
     programs.dconf.enable = true;
-
-    # https://github.com/NixOS/nixpkgs/issues/114514
-    # dconf write /org/gnome/mutter/experimental-features "['scale-monitor-framebuffer']" TODO hack for GNOME 45
-
 
     # Exclude default GNOME packages that dont interest me.
     environment.gnome.excludePackages =

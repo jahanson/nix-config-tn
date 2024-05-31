@@ -1,8 +1,4 @@
-{ pkgs
-, config
-, lib
-, ...
-}:
+{ pkgs, config, lib, ... }:
 let
   cfg = config.mySystem.services.glances;
   app = "Glances";
@@ -17,16 +13,7 @@ with lib;
           type = lib.types.bool;
           description = "Enable gatus monitoring";
           default = true;
-
         };
-      addToHomepage = mkOption
-        {
-          type = lib.types.bool;
-          description = "Add to homepage";
-          default = true;
-
-        };
-
     };
   config = mkIf cfg.enable {
 
@@ -45,7 +32,6 @@ with lib;
     networking = {
       firewall.allowedTCPPorts = [ 61208 ];
     };
-
 
     environment.etc."glances/glances.conf" = {
       text = ''

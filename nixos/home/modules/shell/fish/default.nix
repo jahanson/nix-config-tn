@@ -23,8 +23,6 @@ in
           ll = "${pkgs.eza}/bin/eza --long --all --group --header";
           tm = "tmux attach -t (basename $PWD) || tmux new -s (basename $PWD)";
           x = "exit";
-          # lazydocker --> lazypodman
-          lazypodman="sudo DOCKER_HOST=unix:///run/podman/podman.sock lazydocker";
         };
 
         shellAbbrs = {

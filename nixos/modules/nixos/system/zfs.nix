@@ -1,8 +1,4 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
+{ lib, config, pkgs, ... }:
 let
   cfg = config.mySystem.system.zfs;
 in
@@ -40,6 +36,5 @@ with lib;
       ZED_PUSHOVER_TOKEN = "$(${pkgs.busybox}/bin/cat ${config.sops.secrets.pushover-api-key.path})";
       ZED_PUSHOVER_USER = "$(${pkgs.busybox}/bin/cat ${config.sops.secrets.pushover-user-key.path})";
     };
-
   };
 }

@@ -8,7 +8,7 @@ let
   cfg = config.mySystem.system.systemd.pushover-alerts;
 in
 {
-  options.mySystem.system.systemd.pushover-alerts.enable = mkEnableOption "Pushover alers for systemd failures" // { default = true; };
+  options.mySystem.system.systemd.pushover-alerts.enable = mkEnableOption "Pushover alerts for systemd failures" // { default = true; };
   options.systemd.services = mkOption {
     type = with types; attrsOf (
       submodule {

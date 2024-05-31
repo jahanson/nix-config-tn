@@ -53,22 +53,24 @@ let
         zpool list -Ho name,cap,size | awk '{ printf("%-10s%+3s used out of %+5s\n", $1, $2, $3); }' | sed -e 's/^/  /'
       fi
       printf "\n"
+      
+      if [[ -n "$service_status" ]]; then
       printf "$BOLDService status$ENDCOLOR\n"
-
-      while IFS= read -r line; do
-        if [[ $line =~ ".scope" ]]; then
-          continue
-        fi
-        if echo "$line" | grep -q 'failed'; then
-          service_name=$(echo $line | awk '{print $2;}' | sed 's/podman-//g')
-          printf "$RED• $ENDCOLOR%-50s $RED[failed]$ENDCOLOR\n" "$service_name"
-        elif echo "$line" | grep -q 'running'; then
-          service_name=$(echo $line | awk '{print $1;}' | sed 's/podman-//g')
-          printf "$GREEN• $ENDCOLOR%-50s $GREEN[active]$ENDCOLOR\n" "$service_name"
-        else
-          echo "service status unknown"
-        fi
-      done <<< "$service_status"
+        while IFS= read -r line; do
+          if [[ $line =~ ".scope" ]]; then
+            continue
+          fi
+          if echo "$line" | grep -q 'failed'; then
+            service_name=$(echo $line | awk '{print $2;}' | sed 's/podman-//g')
+            printf "$RED• $ENDCOLOR%-50s $RED[failed]$ENDCOLOR\n" "$service_name"
+          elif echo "$line" | grep -q 'running'; then
+            service_name=$(echo $line | awk '{print $1;}' | sed 's/podman-//g')
+            printf "$GREEN• $ENDCOLOR%-50s $GREEN[active]$ENDCOLOR\n" "$service_name"
+          else
+            echo "service status unknown"
+          fi
+        done <<< "$service_status"
+      fi
     '';
   cfg = config.mySystem.system.motd;
 in

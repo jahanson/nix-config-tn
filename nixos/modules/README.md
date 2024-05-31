@@ -1,6 +1,6 @@
 ## Modules
 
-A set of 'custom' modules with the aim to enable easy on/off/settings to build up a system modulary to my 'specs'.
+A set of 'custom' modules with the aim to enable easy on/off/settings to build up a system modularly to my 'specs'.
 
 The main goal is to build up a `mySystem` options key which is easy to read and toggle functionality on and off.
 

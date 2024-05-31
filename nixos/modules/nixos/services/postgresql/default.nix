@@ -1,15 +1,9 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.${category}.${app};
   app = "postgresql";
   category = "services";
-  description = "Postgres RDMS";
-  appFolder = "/var/lib/${app}";
 in
 {
   options.mySystem.${category}.${app} =
@@ -21,6 +15,13 @@ in
           type = lib.types.bool;
           description = "Enable prometheus scraping";
           default = true;
+          
+        };
+      backupLocation = mkOption
+        {
+          type = lib.types.string;
+          description = "Location for sql backups to be stored.";
+          default = "/persist/backup/postgresql";
         };
       backup = mkOption
         {
@@ -28,7 +29,6 @@ in
           description = "Enable backups";
           default = true;
         };
-
     };
 
   config = mkIf cfg.enable {
@@ -55,7 +55,7 @@ in
     # enable backups
     services.postgresqlBackup = mkIf cfg.backup {
       enable = lib.mkForce true;
-      location = "${config.mySystem.nasFolder}/backup/nixos/postgresql";
+      location = cfg.backupLocation;
     };
 
     ### firewall config

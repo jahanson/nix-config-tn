@@ -1,8 +1,4 @@
-{ lib
-, config
-, self
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.services.promMonitoring;
@@ -30,8 +26,6 @@ in
       smartctl = {
         enable = true;
       };
-
-
     };
 
     # ensure ports are open

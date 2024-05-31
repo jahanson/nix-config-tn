@@ -1,8 +1,4 @@
-{ lib
-, config
-, self
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.nix;
@@ -27,7 +23,6 @@ in
         };
     };
   };
-
   config.nix = {
     optimise.automatic = cfg.autoOptimiseStore;
     # automatically garbage collect nix store
