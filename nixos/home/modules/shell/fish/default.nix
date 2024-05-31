@@ -23,48 +23,14 @@ in
           ll = "${pkgs.eza}/bin/eza --long --all --group --header";
           tm = "tmux attach -t (basename $PWD) || tmux new -s (basename $PWD)";
           x = "exit";
+          # lazydocker --> lazypodman
+          lazypodman="sudo DOCKER_HOST=unix:///run/podman/podman.sock lazydocker";
         };
 
         shellAbbrs = {
-          dup = "git add . ; darwin-rebuild --flake . switch";
-          dupb = "git add . ; darwin-rebuild --flake . build --show-trace ; nvd diff /run/current-system result";
-          nup = "git add . ; sudo nixos-rebuild --flake . switch";
-          nhup = "nh os switch . --dry";
+          nrs = "sudo nixos-rebuild switch --flake .";
           nvdiff = "nvd diff /run/current-system result";
-          ap = "ansible-playbook";
-          apb = "ansible-playbook --ask-become";
-          gfp = "git fetch -p && git pull";
-          gitp = "git push";
-          gitpf = "git push -f";
-          tf = "terraform";
         };
-
-        # functions = {
-        #   brewup = {
-        #     description = "Update homebrew applications";
-        #     body = builtins.readFile ./functions/brewup.fish;
-        #   };
-        #   fish_prompt = {
-        #     description = "Set the fish prompt";
-        #     body = builtins.readFile ./functions/fish_prompt.fish;
-        #   };
-        #   fish_right_prompt = {
-        #     description = "Set the right prompt";
-        #     body = builtins.readFile ./functions/fish_right_prompt.fish;
-        #   };
-        #   fish_title = {
-        #     description = "Set the title";
-        #     body = builtins.readFile ./functions/fish_title.fish;
-        #   };
-        #   fwatch = {
-        #     description = "Watch with fish alias support";
-        #     body = builtins.readFile ./functions/fwatch.fish;
-        #   };
-        #   git_current_branch = {
-        #     description = "Display the current branch";
-        #     body = builtins.readFile ./functions/git_current_branch.fish;
-        #   };
-        # };
 
         interactiveShellInit = ''
           # Erase fish_mode_prompt function
@@ -109,15 +75,6 @@ in
       home.sessionVariables.fish_greeting = "";
 
       programs.nix-index.enable = true;
-
-      # programs.fish = {
-      #   functions = {
-      #     agent = {
-      #       description = "Start SSH agent";
-      #       body = builtins.readFile ./functions/agent.fish;
-      #     };
-      #   };
-      # };
     })
   ];
 }
