@@ -55,7 +55,7 @@ in
     # enable backups
     services.postgresqlBackup = mkIf cfg.backup {
       enable = lib.mkForce true;
-      location = backupLocation;
+      location = cfg.backupLocation;
     };
 
     ### firewall config

@@ -4,7 +4,6 @@
     ./forgejo
     ./glances
     ./monitoring.nix
-    ./nfs
     ./nginx
     ./nix-serve
     ./podman

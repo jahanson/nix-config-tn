@@ -32,7 +32,7 @@ in
         lazydocker
       ];
       
-      config.programs.fish.shellAliases = {
+      programs.fish.shellAliases = {
         # lazydocker --> lazypodman
         lazypodman="sudo DOCKER_HOST=unix:///run/podman/podman.sock lazydocker";
       };
