@@ -49,7 +49,8 @@ in
             signingKey = cfg.signingKey;
           };
           gpg.format = "ssh";
-          gpg.program = "${pkgs._1password}/bin/op-ssh-sign";
+          # gpg.ssh.program = "/etc/profiles/per-user/jahanson/bin/op-ssh-sign";
+          gpg.ssh.program = "${pkgs._1password-gui}/bin/op-ssh-sign";
         };
         aliases = {
           co = "checkout";
