@@ -1,5 +1,5 @@
 {
-  description = "My nixos homelab";
+  description = "My NixOS homelab";
 
   inputs = {
     # Nixpkgs and unstable
