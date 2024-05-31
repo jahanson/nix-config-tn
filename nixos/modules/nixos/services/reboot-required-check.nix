@@ -1,8 +1,4 @@
-{ lib
-, config
-, self
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.services.rebootRequiredCheck;
@@ -11,7 +7,6 @@ in
   options.mySystem.services.rebootRequiredCheck.enable = mkEnableOption "Reboot required check";
 
   config = mkIf cfg.enable {
-
     # Enable timer
     systemd.timers."reboot-required-check" = {
       wantedBy = [ "timers.target" ];
@@ -46,9 +41,5 @@ in
         User = "root";
       };
     };
-
-
   };
-
-
 }

@@ -1,9 +1,4 @@
-{ lib
-, config
-, self
-, pkgs
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.shell.fish;

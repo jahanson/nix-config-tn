@@ -1,8 +1,4 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
+{ lib, config, pkgs, ... }:
 with lib;
 let
   cfg = config.mySystem.system.resticBackup;
@@ -30,10 +26,9 @@ in
     mountPath = mkOption
       {
         type = types.str;
-        description = "Location for  snapshot mount";
+        description = "Location for snapshot mount";
         default = "/mnt/nightly_backup";
       };
-
   };
   config = {
 

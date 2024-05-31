@@ -1,4 +1,4 @@
-{ inputs, lib, ... }:
+{ lib, ... }:
 
 with lib;
 rec {
@@ -11,9 +11,6 @@ rec {
     let
       user = existsOrDefault "user" options "568";
       group = existsOrDefault "group" options "568";
-
-      subdomain = existsOrDefault "subdomainOverride" options options.app;
-      host = existsOrDefault "host" options "${subdomain}.${options.domain}";
 
       enableBackups = (lib.attrsets.hasAttrByPath [ "persistence" "folder" ] options)
         && (lib.attrsets.attrByPath [ "persistence" "enable" ] true options);

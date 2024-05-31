@@ -3,7 +3,6 @@
     ./cockpit
     ./forgejo
     ./glances
-    ./grafana
     ./monitoring.nix
     ./nfs
     ./nginx

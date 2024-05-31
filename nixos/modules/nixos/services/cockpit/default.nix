@@ -1,9 +1,4 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
-
+{ lib, config, pkgs, ... }:
 with lib;
 let
   cfg = config.mySystem.services.cockpit;

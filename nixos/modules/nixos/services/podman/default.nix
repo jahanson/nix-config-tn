@@ -1,9 +1,4 @@
-{ lib
-, config
-, pkgs
-, ...
-}:
-
+{ lib, config, pkgs, ... }:
 with lib;
 let
   cfg = config.mySystem.services.podman;
@@ -34,7 +29,13 @@ in
 
       environment.systemPackages = with pkgs; [
         podman-tui # status of containers in the terminal
+        lazydocker
       ];
+      
+      config.programs.fish.shellAliases = {
+        # lazydocker --> lazypodman
+        lazypodman="sudo DOCKER_HOST=unix:///run/podman/podman.sock lazydocker";
+      };
 
       networking.firewall.interfaces.podman0.allowedUDPPorts = [ 53 ];
 
