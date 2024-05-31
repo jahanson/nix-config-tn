@@ -1,8 +1,4 @@
-{ lib
-, config
-, self
-, ...
-}:
+{ lib, config, ... }:
 with lib;
 let
   cfg = config.mySystem.services.openssh;
@@ -23,7 +19,6 @@ in
         default = "no";
       };
   };
-
   config = mkIf cfg.enable {
     services.openssh = {
       enable = true;
