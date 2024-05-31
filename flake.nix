@@ -57,6 +57,7 @@
       url = "github:bluskript/nix-inspect";
     };
   };
+  
   outputs =
     { self
     , nixpkgs
