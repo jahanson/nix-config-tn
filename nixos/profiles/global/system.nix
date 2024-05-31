@@ -8,6 +8,6 @@
     '';
 
     # Do not change unless you know what you are doing
-    stateVersion = "23.11";
+    stateVersion = "24.11";
   };
 }
