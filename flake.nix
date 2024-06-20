@@ -4,7 +4,6 @@
   inputs = {
     # Nixpkgs and unstable
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
 
     # impermanence
     # https://github.com/nix-community/impermanence
@@ -22,13 +21,6 @@
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # home-manager - stable
-    # https://github.com/nix-community/home-manager
-    home-manager-stable = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
     # sops-nix - secrets with mozilla sops
@@ -51,13 +43,14 @@
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # nix-inspect - inspect nix derivations usingn a TUI interface
     # https://github.com/bluskript/nix-inspect
     nix-inspect = {
       url = "github:bluskript/nix-inspect";
     };
   };
-  
+
   outputs =
     { self
     , nixpkgs
